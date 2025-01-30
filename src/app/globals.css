@@ -1,9 +1,43 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-/* @import "tailwindcss"; */
-/* @import "tailwindcss"; */
-@plugin "daisyui";
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes:
+    light --default,
+    dark --prefersdark,
+    cupcake,
+    bumblebee,
+    emerald,
+    corporate,
+    retro,
+    cyberpunk,
+    valentine,
+    garden,
+    aqua,
+    lofi,
+    pastel,
+    fantasy,
+    wireframe,
+    cmyk,
+    autumn,
+    acid,
+    lemonade,
+    winter,
+    nord,
+    caramellatte,
+    silk,
+    synthwave,
+    halloween,
+    forest,
+    black,
+    luxury,
+    dracula,
+    business,
+    night,
+    coffee,
+    dim,
+    sunset,
+    abyss
+}
 
 /* :root {
   --background: #ffffff;
