@@ -1,9 +1,21 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
 const Dropdown_theme = () => {
   const { theme, setTheme } = useTheme();
+  const [activeTheme, setActiveTheme] = useState(theme);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setActiveTheme(theme);
+  }, [theme]);
+
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return null;
+  }
 
   const lightThemes = [
     "light",
@@ -46,10 +58,13 @@ const Dropdown_theme = () => {
     "abyss",
   ];
 
+  const isCurrentTheme = (t: string) => activeTheme === t;
+  const isDarkTheme = (t: string) => darkThemes.includes(t);
+
   return (
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn m-1">
-        Theme ⬇️
+        {activeTheme ? `Theme: ${activeTheme}` : "Select Theme"} ⬇️
       </div>
       <ul
         tabIndex={0}
@@ -59,7 +74,9 @@ const Dropdown_theme = () => {
         {lightThemes.map((t) => (
           <li key={t}>
             <button
-              className={`${theme === t ? "active" : ""}`}
+              className={`${
+                isCurrentTheme(t) ? "btn btn-primary btn-sm" : "btn-sm"
+              }`}
               onClick={() => setTheme(t)}
             >
               {t.charAt(0).toUpperCase() + t.slice(1)}
@@ -71,7 +88,9 @@ const Dropdown_theme = () => {
         {darkThemes.map((t) => (
           <li key={t}>
             <button
-              className={`${theme === t ? "active" : ""}`}
+              className={`${
+                isCurrentTheme(t) ? "btn btn-primary btn-sm" : "btn-sm"
+              }`}
               onClick={() => setTheme(t)}
             >
               {t.charAt(0).toUpperCase() + t.slice(1)}

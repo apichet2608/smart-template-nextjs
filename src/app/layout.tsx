@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="system">
+    <html lang="en" data-theme="light">
       <body>
         <ThemeProvider
         // attribute="class"
@@ -21,8 +21,13 @@ export default function RootLayout({
         // enableSystem
         // disableTransitionOnChange
         >
-          <div className="flex justify-end">
-            <Dropdown_theme />
+          <div className="navbar bg-base-200">
+            <div className="ps-4">
+              <a className="text-lg font-bold">SMART</a>
+            </div>
+            <div className="flex grow justify-end px-2">
+              <Dropdown_theme />
+            </div>
           </div>
           {children}
         </ThemeProvider>
