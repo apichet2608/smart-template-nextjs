@@ -9,27 +9,32 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" data-theme="light">
-      <body>
-        <ThemeProvider
-        // attribute="class"
-        // defaultTheme="system"
-        // enableSystem
-        // disableTransitionOnChange
-        >
-          <div className="navbar bg-base-200">
-            <div className="ps-4">
-              <a className="text-lg font-bold">SMART</a>
-            </div>
-            <div className="flex grow justify-end px-2">
-              <Dropdown_theme />
-            </div>
-          </div>
-          {children}
+      <body className="flex flex-col min-h-screen">
+        <ThemeProvider>
+          {/* Header */}
+          <header className="bg-base-300 p-4 flex justify-center  rounded-full m-2">
+            <nav className="flex gap-2">
+              <button className="btn btn-ghost rounded-full">Home</button>
+              <button className="btn btn-ghost rounded-full">Project</button>
+              <button className="btn btn-ghost rounded-full">About me</button>
+              <button className="btn btn-ghost rounded-full">Contacts</button>
+            </nav>
+          </header>
+
+          {/* Main Content */}
+          <main className="flex-1 p-4">{children}</main>
+
+          {/* Footer */}
+          <footer className="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4">
+            <aside>
+              <p>
+                © {new Date().getFullYear()} My Website. All rights reserved.
+              </p>
+            </aside>
+          </footer>
         </ThemeProvider>
       </body>
     </html>
