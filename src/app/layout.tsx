@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "../Components/theme-provider";
 import ThemeSelect from "../Components/Dropdown-theme";
 import Link from "next/link";
+import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,24 +17,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="flex flex-col min-h-screen" suppressHydrationWarning>
         <ThemeProvider>
-          <header className="bg-base-300 p-1 flex justify-center rounded-full m-2 h-12">
-            <nav className="flex gap-2 my-auto">
-              <button className="btn btn-sm btn-ghost rounded-full">
-                <Link href="/home">Home</Link>
-              </button>
-              <button className="btn btn-sm btn-ghost rounded-full">
-                <Link href="/projects">Projects</Link>
-              </button>
-              <button className="btn btn-sm btn-ghost rounded-full">
-                <Link href="/about">About</Link>
-              </button>
-              <button className="btn btn-sm btn-ghost rounded-full">
-                <Link href="/contact">Contact</Link>
-              </button>
-            </nav>
-            {/* <ThemeSelect /> */}
-          </header>
-          <main className="flex-1 p-4">{children}</main>
+          <main className="flex-1">
+            <SessionProvider basePath="/smart-template/api/auth">
+              {children}
+            </SessionProvider>
+          </main>
         </ThemeProvider>
       </body>
     </html>
